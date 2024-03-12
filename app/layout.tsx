@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 // our global stylesheet
 import "./globals.css";
 import GlobalStyles from "./providers/GlobalStyles";
+import ContextProvider from "./providers/ContextProvider";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={quicksand.className}>
-        <GlobalStyles>
-          <Sidebar />
-          {children}
-        </GlobalStyles>
+        <ContextProvider>
+          <GlobalStyles>
+            <Sidebar />
+            {children}
+          </GlobalStyles>
+        </ContextProvider>
       </body>
     </html>
   );

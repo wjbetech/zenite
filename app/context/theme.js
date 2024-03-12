@@ -1,4 +1,4 @@
-const themes = [
+const theme = [
   // light theme
   {
     name: "light",
@@ -35,4 +35,4 @@ const themes = [
   }
 ]
 
-export default themes;
+export default theme;

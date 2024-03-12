@@ -8,7 +8,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-
 // pass children to GlobalStyles typed to ReactNode
 export default function GlobalStyles({children}: Props) {
   return (
@@ -20,8 +19,6 @@ export default function GlobalStyles({children}: Props) {
 
 const MyGlobalStyle = styled.div`
   padding: 2rem;
-  font-size: 16px;
-  color: white;
   display: flex;
   gap: 1.5rem;
   height: 100%;
