@@ -25,9 +25,15 @@ export default function Sidebar() {
 
 	return (
 		<SidebarStyles theme={myTheme}>
-			<div className="profile">
+			<div className="profile flex justify-between items-center py-2 px-3  rounded-lg">
 				<div className="image">
-					<Image src="/avatar.jpg" alt="stock avatar" width={70} height={70} />
+					<Image
+						src="/avatar.jpg"
+						alt="stock avatar"
+						width={70}
+						height={70}
+						className="rounded-full"
+					/>
 				</div>
 				<h1>
 					<span>John</span>
@@ -51,6 +57,7 @@ export default function Sidebar() {
 					);
 				})}
 			</ul>
+			<button>Sign Out</button>
 		</SidebarStyles>
 	);
 }
@@ -58,9 +65,23 @@ export default function Sidebar() {
 const SidebarStyles = styled.nav`
   position: relative;
   width: ${(props) => props.theme.sidebarWidth};
-  background-color: ${(props) => props.theme.bgSecondary};
+  background-color: ${(props) => props.theme.bgPrimary};
   border-radius: 12px;
   border: 2px solid ${(props) => props.theme.borderColor};
   padding: ${(props) => props.theme.padding};
-  color: ${(props) => props.theme.text}
+  color: ${(props) => props.theme.text};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & .image {
+    border-radius: 100%;
+  }
+
+  & li {
+    display: flex;
+    align-items: center;
+    gap: ${(props) => props.theme.gridGap};
+    padding: ${(props) => props.theme.listPadding};
+  }
 `;
