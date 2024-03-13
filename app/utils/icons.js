@@ -1,9 +1,9 @@
-import { FaHome, FaPlus, FaPlay, FaStop, FaCog } from "react-icons/fa";
+import { FaList, FaPlus, FaPlay, FaStop, FaCog } from "react-icons/fa";
 
 const getMenuIcon = (icon) => {
   switch(icon) {
     case 'home':
-      return <FaHome />;
+      return <FaList />;
     case 'add':
       return <FaPlus />;
     case 'active':
