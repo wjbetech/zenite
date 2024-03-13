@@ -11,7 +11,7 @@ const theme = [
 		text: "#FFF",
 		sidebarWidth: "15rem",
 		sidebarCollapsed: "5.4rem",
-		borderColor: "#99B080",
+		borderColor: "#bbb",
 		padding: "1rem 1rem",
 		listPadding: "0.25rem 0.25rem",
 		margin: "1rem 1rem",

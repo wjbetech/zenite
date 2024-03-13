@@ -25,28 +25,32 @@ export default function Sidebar() {
 
 	return (
 		<SidebarStyles theme={myTheme}>
-			<div className="profile flex justify-between items-center py-2 px-3  rounded-lg">
-				<div className="image">
+			<div className="profile flex p-4 items-center gap-4 justify-evenly rounded-lg bg-black/25 hover:bg-black/20 cursor-pointer h-[84px]">
+				<div className="image w-[33%]">
 					<Image
 						src="/avatar.jpg"
 						alt="stock avatar"
-						width={70}
-						height={70}
+						width={60}
+						height={60}
 						className="rounded-full"
 					/>
 				</div>
-				<h1>
-					<span>John</span>
-					<span>Doe</span>
-				</h1>
+				<div className="w-[66%] text-center">
+					<h1 className="flex flex-col">
+						<span>John</span>
+						<span>Doe</span>
+					</h1>
+				</div>
 			</div>
-			<ul className="nav-items">
+			<ul className="cursor-pointer relative mb-10">
 				{menu.map((item) => {
 					const link = item.link;
 					return (
 						<li
 							key={item.id}
-							className={`nav-item ${pathName === link ? "active" : ""}`}
+							className={`hover:bg-white/10 w-full ${
+								pathName === link ? "active" : ""
+							}`}
 							onKeyDown={() => link}
 						>
 							{getMenuIcon(item.icon)}
@@ -74,8 +78,17 @@ const SidebarStyles = styled.nav`
   flex-direction: column;
   justify-content: space-between;
 
+  & .profile {
+    border: 2px solid #bbb;
+  }
+
   & .image {
     border-radius: 100%;
+    flex-shrink: 0;
+    display: inline-block;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    border: 2px solid #bbb;
   }
 
   & li {
