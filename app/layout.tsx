@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Inter } from "next/font/google";
 
 // components
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar/Sidebar";
 
 // our global stylesheet
 import "./globals.css";
 import GlobalStyles from "./providers/GlobalStyles";
 import ContextProvider from "./providers/ContextProvider";
+import Navbar from "./components/Navbar/Navbar";
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,9 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={quicksand.className}>
+      <body className={inter.className}>
         <ContextProvider>
           <GlobalStyles>
+            {/* <Navbar /> */}
             <Sidebar />
             {children}
           </GlobalStyles>
