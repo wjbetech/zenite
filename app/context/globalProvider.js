@@ -8,7 +8,7 @@ export const GlobalUpdateContext = createContext();
 export const GlobalProvider = ({ children }) => {
 
   const myThemes = ["light", "dark"];
-  const [selectedTheme, setSelectedTheme] = useState(0);
+  const [selectedTheme, setSelectedTheme] = useState(1);
   const theme = myThemes[selectedTheme];
 
 	return (
