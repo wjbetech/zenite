@@ -1,18 +1,19 @@
 "use client";
 
 import React, { createContext, useState, useContext } from "react";
-import theme from "./theme";
 
 export const GlobalContext = createContext();
 export const GlobalUpdateContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
-	const [themeId, setThemeId] = useState(0);
-	const myTheme = theme[themeId];
+
+  const myThemes = ["light", "dark"];
+  const [selectedTheme, setSelectedTheme] = useState(0);
+  const theme = myThemes[selectedTheme];
 
 	return (
-		<GlobalContext.Provider value={{ myTheme }}>
-			<GlobalUpdateContext.Provider>
+		<GlobalContext.Provider value={{theme}}>
+			<GlobalUpdateContext.Provider value>
 				{children}
 			</GlobalUpdateContext.Provider>
 		</GlobalContext.Provider>

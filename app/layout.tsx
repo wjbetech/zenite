@@ -6,7 +6,6 @@ import Sidebar from "./components/Sidebar/Sidebar/Sidebar";
 
 // our global stylesheet
 import "./globals.css";
-import GlobalStyles from "./providers/GlobalStyles";
 import ContextProvider from "./providers/ContextProvider";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -25,13 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ContextProvider>
-          <GlobalStyles>
-            {/* <Navbar /> */}
-            <Sidebar />
-            {children}
-          </GlobalStyles>
-        </ContextProvider>
+        <div className="flex h-full">
+          <ContextProvider>
+              <Sidebar />
+              <Navbar />
+          </ContextProvider>
+          {children}
+        </div>
       </body>
     </html>
   );

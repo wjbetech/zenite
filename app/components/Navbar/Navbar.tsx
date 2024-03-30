@@ -1,26 +1,16 @@
 "use client"
 
 import React from 'react'
-import styled from "styled-components";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-// import global state
-import { useGlobalState } from "@/app/context/globalProvider";
 
-type Props = {}
-
-export default function Navbar({}: Props) {
-
-  const { myTheme } = useGlobalState();
+export default function Navbar() {
 
   return (
-    <StyledNav theme={myTheme}>Navbar</StyledNav>
+    <nav className="py-2 px-6 w-full h-[64px] flex justify-between">
+      <h1 className="text-3xl">Zenite</h1>
+    </nav>
   )
 }
-
-const StyledNav = styled.nav`
-  height: 56px;
-  background-color: ${(props) => props.theme.bgSecondary};
-`
