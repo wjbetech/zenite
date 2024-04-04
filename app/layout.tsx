@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 // components
-import Sidebar from "./components/Sidebar/Sidebar/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 // our global stylesheet
 import "./globals.css";
