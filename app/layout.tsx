@@ -26,7 +26,7 @@ export default function RootLayout({
 				<div className="flex h-full">
 					<ContextProvider>
 						<Sidebar />
-						{children}
+						<div className="w-full mx-2 p-4">{children}</div>
 					</ContextProvider>
 				</div>
 			</body>
