@@ -1,7 +1,12 @@
+import Tasks from "./components/TasksGroup/Tasks";
+
 export default function Home() {
 	return (
-		<main className="">
-			<p>content</p>
-		</main>
+		<div>
+			<h1 className="underline underline-offset-4 decoration-blue-500 decoration-4">
+				All Tasks
+			</h1>
+			<Tasks />
+		</div>
 	);
 }
