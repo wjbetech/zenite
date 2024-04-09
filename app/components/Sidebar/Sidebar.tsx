@@ -9,6 +9,9 @@ import { usePathname, useRouter } from "next/navigation";
 import menu from "@/app/utils/menu";
 import getMenuIcon from "@/app/utils/icons";
 
+// sub-components
+import { SignOutButton } from "@clerk/nextjs";
+
 // import global state
 import { useGlobalState } from "@/app/context/globalProvider";
 
@@ -66,9 +69,7 @@ export default function Sidebar() {
         </ul>
       </div>
       {/* sign out button */}
-      <button type="button" className="text-sm">
-        Sign Out
-      </button>
+      <SignOutButton />
     </div>
   );
 }
