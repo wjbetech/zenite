@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, auth } from "@clerk/nextjs";
 
 // components
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -21,13 +21,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // conditional rendering when user is logged in
+  const { userId } = auth();
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           <div className="flex h-full">
             <ContextProvider>
-              <Sidebar />
+              {userId && <Sidebar />}
               <div className="w-full mx-2 p-6">{children}</div>
             </ContextProvider>
           </div>
