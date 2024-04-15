@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider, auth, currentUser } from "@clerk/nextjs";
+import { ClerkProvider, auth } from "@clerk/nextjs";
 
 // components
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -22,7 +22,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { userId } = auth();
-  const user = await currentUser();
   return (
     <ClerkProvider>
       <html lang="en">
