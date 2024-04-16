@@ -1,8 +1,22 @@
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { data } = req.body;
+    // make sure a user is logged in before POST
+    const { userId } = auth();
+    
+    // send unauth'd user away
+    if (!userId) {
+      return NextResponse.redirect("/");
+    }
+
+    // gather and validate data if user is auth'd
+    const { title, description, date, completed, status } = await req.json();
+
+
+
+    // 
   } catch (error) {
     console.log("ERROR CREATING TASK!");
     return new NextResponse({
