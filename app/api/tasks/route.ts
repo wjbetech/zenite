@@ -1,5 +1,9 @@
+import prisma from "@/app/utils/connectDB";
 import { auth } from "@clerk/nextjs";
+import { Prisma } from "@prisma/client";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
+
 
 export async function POST(req: Request) {
   try {
@@ -8,15 +12,46 @@ export async function POST(req: Request) {
     
     // send unauth'd user away
     if (!userId) {
-      return NextResponse.redirect("/");
+      return NextResponse.json({
+        error: "Unauthorised", status: 
+        redirect("/login")
+      });
+    };
+
+    // gather and validate data from inputs
+    const { title, description, date, completed } = await req.json();
+
+    if (!title || !description || !date || !completed) {
+      return NextResponse.json({
+        error: "Missing required fields", status: 400
+      });
     }
 
-    // gather and validate data if user is auth'd
-    const { title, description, date, completed, status } = await req.json();
+    if (title.length < 3) {
+      return NextResponse.json({
+        error: "Title must be at least 3 characters", status: 400
+      });
+    }
+    
+    if (description.length < 15) {
+      return NextResponse.json({
+        error: "Description must be at least 15 characters", status: 400
+      })
+    }
 
+    // build our prisma task
+    const task = await prisma.task.create({
+      data: {
+        title,
+        description,
+        date,
+        isCompleted: completed,
+        userId
+      }
+    })
 
+    return NextResponse.json(task);
 
-    // 
   } catch (error) {
     console.log("ERROR CREATING TASK!");
     return new NextResponse({
