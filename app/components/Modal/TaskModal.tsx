@@ -1,6 +1,8 @@
 import type React from "react";
 import { useState } from "react";
 
+import axios from "axios";
+
 // types for our task modal inputs
 interface TaskState {
   title: string;
@@ -29,16 +31,20 @@ export default function TaskModal() {
   };
 
   // handle submissions
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(taskState);
+    try {
+      const res = await axios.post("/api/tasks", taskState);
+    } catch (error) {}
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 p-4 w-1/5 border-2">
       <h1>Create Task</h1>
       <div className="flex flex-col gap-2 py-2">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title" className="text-gray-500">
+          Title
+        </label>
         <input
           type="text"
           name="title"
@@ -50,7 +56,9 @@ export default function TaskModal() {
         />
       </div>
       <div className="flex flex-col gap-2 py-2">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description" className="text-gray-500">
+          Description
+        </label>
         <input
           type="text"
           name="description"
