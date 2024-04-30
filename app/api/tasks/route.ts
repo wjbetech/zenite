@@ -4,39 +4,41 @@ import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
-
 export async function POST(req: Request) {
   try {
     // make sure a user is logged in before POST
     const { userId } = auth();
-    
+
     // send unauth'd user away
     if (!userId) {
       return NextResponse.json({
-        error: "Unauthorised", status: 
-        redirect("/login")
+        error: "Unauthorised",
+        status: redirect("/login"),
       });
-    };
+    }
 
     // gather and validate data from inputs
     const { title, description, date, completed } = await req.json();
 
     if (!title || !description || !date || !completed) {
       return NextResponse.json({
-        error: "Missing required fields", status: 400
+        error: "Missing required fields",
+        status: 400,
       });
     }
 
     if (title.length < 3) {
       return NextResponse.json({
-        error: "Title must be at least 3 characters", status: 400
+        error: "Title must be at least 3 characters",
+        status: 400,
       });
     }
-    
+
     if (description.length < 15) {
       return NextResponse.json({
-        error: "Description must be at least 15 characters", status: 400
-      })
+        error: "Description must be at least 15 characters",
+        status: 400,
+      });
     }
 
     // build our prisma task
@@ -46,51 +48,47 @@ export async function POST(req: Request) {
         description,
         date,
         isCompleted: completed,
-        userId
-      }
-    })
+        userId,
+      },
+    });
 
+    // return the prisma task in json format
     return NextResponse.json(task);
-
   } catch (error) {
-    console.log("ERROR CREATING TASK!");
-    return new NextResponse({
-      error: "Error creating new task",
-      status: 500,
-    });
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
-export async function GET(req: Request) {
-  try {
-  } catch (error) {
-    console.log("ERROR REACHING TASK!");
-    return new NextResponse({
-      error: "Error reaching task",
-      status: 500,
-    });
-  }
-}
+// export async function GET(req: Request) {
+//   try {
+//   } catch (error) {
+//     console.log("ERROR REACHING TASK!");
+//     return new NextResponse({
+//       error: "Error reaching task",
+//       status: 500,
+//     });
+//   }
+// }
 
-export async function PUT(req: Request) {
-  try {
-  } catch (error) {
-    console.log("ERROR EDITING TASK!");
-    return new NextResponse({
-      error: "Error editing task",
-      status: 500,
-    });
-  }
-}
+// export async function PUT(req: Request) {
+//   try {
+//   } catch (error) {
+//     console.log("ERROR EDITING TASK!");
+//     return new NextResponse({
+//       error: "Error editing task",
+//       status: 500,
+//     });
+//   }
+// }
 
-export async function DELETE(task: Task) {
-  try {
-    await 
-  } catch (error) {
-    console.log("ERROR DELETING TASK!");
-    return new NextResponse({
-      error: "Error deleting task",
-      status: 500,
-    });
-  }
-}
+// export async function DELETE(task: Task) {
+//   try {
+//     await
+//   } catch (error) {
+//     console.log("ERROR DELETING TASK!");
+//     return new NextResponse({
+//       error: "Error deleting task",
+//       status: 500,
+//     });
+//   }
+// }
