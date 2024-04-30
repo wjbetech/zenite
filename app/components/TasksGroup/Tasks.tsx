@@ -6,11 +6,11 @@ import { useGlobalState } from "@/app/context/globalProvider";
 import TaskModal from "../Modal/TaskModal";
 
 export default function Tasks() {
-	const { theme } = useGlobalState();
+  const { theme } = useGlobalState();
 
-	return (
-		<main className="w-full my-4 overflow-y-auto h-full py-8 px-4">
-			<TaskModal />
-		</main>
-	);
+  return (
+    <main className="w-full my-4 overflow-y-auto h-full py-8">
+      <TaskModal />
+    </main>
+  );
 }

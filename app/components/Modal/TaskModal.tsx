@@ -35,9 +35,9 @@ export default function TaskModal() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-y-4 p-4 w-1/5 border-2">
       <h1>Create Task</h1>
-      <div className="title">
+      <div className="flex flex-col gap-2 py-2">
         <label htmlFor="title">Title</label>
         <input
           type="text"
@@ -46,9 +46,10 @@ export default function TaskModal() {
           value={taskState.title}
           onChange={(e) => handleInputChanges(e)}
           placeholder="Set up PrismaDB..."
+          className="p-2"
         />
       </div>
-      <div className="description">
+      <div className="flex flex-col gap-2 py-2">
         <label htmlFor="description">Description</label>
         <input
           type="text"
@@ -57,10 +58,11 @@ export default function TaskModal() {
           value={taskState.description}
           onChange={(e) => handleInputChanges(e)}
           placeholder="Set up basic Prisma processes..."
+          className="overflow-x-clip p-2"
         />
       </div>
       <div className="submit-button">
-        <button type="submit" className="submit-button">
+        <button type="submit" className="border-2 p-2 w-full rounded-md">
           Add Task
         </button>
       </div>
