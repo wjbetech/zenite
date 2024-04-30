@@ -26,7 +26,6 @@ export default async function RootLayout({
 }>) {
   const { userId } = auth();
   const user = await currentUser();
-  console.log(user);
 
   return (
     <ClerkProvider>
