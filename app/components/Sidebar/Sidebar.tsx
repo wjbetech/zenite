@@ -10,7 +10,7 @@ import menu from "@/app/utils/menu";
 import getMenuIcon from "@/app/utils/icons";
 
 // sub-components
-import { SignOutButton, auth } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 
 // import global state
 import { useGlobalState } from "@/app/context/globalProvider";

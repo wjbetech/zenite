@@ -1,5 +1,5 @@
 import prisma from "@/app/utils/connectDB";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
