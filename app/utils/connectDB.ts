@@ -1,23 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+let prisma = new PrismaClient();
 
-async function main() {
-	// ... you will write your Prisma Client queries here
-
-	// retrieve all tasks records
-	const tasks = await prisma.task.findMany();
-	console.log(tasks);
+if (process.env.NODE_ENV === "production") {
+  prisma = new PrismaClient();
+} else {
+  // @ts-ignore
+  if (!global.prisma) {
+    // @ts-ignore
+    global.prisma = new PrismaClient();
+  }
+  // @ts-ignore
+  prisma = global.prisma;
 }
-
-main()
-	.then(async () => {
-		await prisma.$disconnect();
-	})
-	.catch(async (e) => {
-		console.error(e);
-		await prisma.$disconnect();
-		process.exit(1);
-	});
 
 export default prisma;

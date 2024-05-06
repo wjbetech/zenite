@@ -1,3 +1,12 @@
+## TODO
+
+[] - Toast for adding task
+[] - Getting tasks from DB
+[] - Delete and Create tasks
+[] - User profile page
+[] - Task update page
+[] - Responsiveness and mobile
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

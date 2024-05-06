@@ -1,6 +1,9 @@
 "use client";
 
+// react
 import React, { createContext, useState, useContext } from "react";
+// toast elements
+import { Toaster } from "react-hot-toast";
 
 export const GlobalContext = createContext();
 export const GlobalUpdateContext = createContext();
@@ -12,6 +15,7 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider value={{ theme }}>
+      <Toaster />
       <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>
   );
