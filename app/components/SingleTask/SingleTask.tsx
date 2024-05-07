@@ -3,13 +3,14 @@
 import React from "react";
 
 interface TaskProps {
+  task: object;
   title: string;
   description: string;
   date: string;
   isCompleted: boolean;
 }
 
-export default function SingleTask({ task }: TaskProps) {
+export default function SingleTask({ task }: { task: TaskProps }) {
   const { title, description, date, isCompleted } = task;
 
   return (
