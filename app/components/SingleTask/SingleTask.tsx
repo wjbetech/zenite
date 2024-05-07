@@ -3,16 +3,14 @@
 import React from "react";
 
 interface TaskProps {
-  task: object;
   title: string;
   description: string;
   date: string;
   isCompleted: boolean;
+  id: string;
 }
 
-export default function SingleTask({ task }: { task: TaskProps }) {
-  const { title, description, date, isCompleted } = task;
-
+export default function SingleTask({ title, description, date, isCompleted }: TaskProps) {
   return (
     <div className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] border-2 border-slate-400 rounded-md justify-between hover:shadow-xl hover:cursor-pointer">
       <div className="flex justify-between">

@@ -5,18 +5,32 @@ import SingleTask from "../SingleTask/SingleTask";
 import { useGlobalState } from "@/app/context/globalProvider";
 import TaskModal from "../Modal/TaskModal";
 
-interface TaskGroupProps {
+interface Task {
   title: string;
-  tasks: any[];
+  description: string;
+  date: string;
+  isCompleted: boolean;
+  id: string;
 }
 
-export default function Tasks({ title, tasks }: TaskGroupProps) {
+interface TaskProps {
+  tasks: Task[];
+}
+
+export default function Tasks({ tasks }: TaskProps) {
   const { theme } = useGlobalState();
 
   return (
     <main className="grid grid-cols-4 gap-8 w-full my-4 h-[300px] py-8">
-      {tasks.map((task) => (
-        <SingleTask key={task.id} task={{ ...task }} />
+      {tasks.map((task: Task) => (
+        <SingleTask
+          key={task.id}
+          title={task.title}
+          description={task.description}
+          date={task.date}
+          isCompleted={task.isCompleted}
+          id={task.id}
+        />
       ))}
       <TaskModal />
     </main>
