@@ -1,7 +1,6 @@
 import type React from "react";
 import { useState } from "react";
 import { NextResponse } from "next/server";
-import { redirect } from "next/navigation";
 
 // axios for handling API
 import axios from "axios";
@@ -38,25 +37,24 @@ export default function TaskModal() {
     setTaskState({ ...taskState, [name]: value });
   };
 
-  // handle submissions
+  // handle submissions with validation, toast, and api POST
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     // post via api
     try {
       const res = await axios.post("/api/tasks", taskState);
-
       // toast on error
       if (res.data.error) {
         console.log(res.data.error);
         toast.error("Could not create task!");
       }
-
+      console.log("Succesfully created task!", taskState);
       toast.success("Task created successfully!");
+      return NextResponse.json(res);
     } catch (error) {
+      // catch errors
       console.log(error);
     }
-
     // reset taskState
     setTaskState({
       title: "",
@@ -67,11 +65,9 @@ export default function TaskModal() {
     });
   };
 
+  // render out the task form
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-y-4 p-4 w-1/5 min-w-[400px] border-2 border-slate-400 rounded-md"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col p-4 border-2 border-slate-400 rounded-md hover:shadow-md">
       <h1>Create Task</h1>
       <div className="flex flex-col gap-2 py-2">
         <label htmlFor="title" className="text-gray-500">

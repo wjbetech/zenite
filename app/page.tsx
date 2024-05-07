@@ -1,10 +1,15 @@
+"use client";
+
 import Tasks from "./components/TasksGroup/Tasks";
+import { useGlobalState } from "./context/globalProvider";
 
 export default function Home() {
+  const { tasks } = useGlobalState();
+
   return (
     <div>
       <h1 className="underline underline-offset-[8px] decoration-blue-500 decoration-[8px]">All Tasks</h1>
-      <Tasks />
+      <Tasks tasks={tasks} />
     </div>
   );
 }
