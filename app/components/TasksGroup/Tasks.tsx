@@ -4,6 +4,7 @@ import React from "react";
 import SingleTask from "../SingleTask/SingleTask";
 import { useGlobalState } from "@/app/context/globalProvider";
 import TaskModal from "../Modal/TaskModal";
+import { FaPlus } from "react-icons/fa";
 
 interface Task {
   title: string;
@@ -32,7 +33,13 @@ export default function Tasks({ tasks }: TaskProps) {
           id={task.id}
         />
       ))}
-      <TaskModal />
+      <button
+        type="button"
+        className="flex flex-col h-[300px] w-full border-2 rounded-md border-slate-300 text-slate-500 justify-center align-middle items-center hover:cursor-pointer hover:border-slate-400 hover:bg-gray-900/15 transition-all ease-in-out duration-300"
+      >
+        <FaPlus />
+        <p className="mt-2">Add Task</p>
+      </button>
     </main>
   );
 }
