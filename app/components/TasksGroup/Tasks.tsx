@@ -5,9 +5,13 @@ import SingleTask from "../SingleTask/SingleTask";
 import { useGlobalState } from "@/app/context/globalProvider";
 import TaskModal from "../Modal/TaskModal";
 
+interface TaskProps {
+  task: object;
+}
+
 interface TaskGroupProps {
   title: string;
-  tasks: any[];
+  tasks: TaskProps;
 }
 
 export default function Tasks({ title, tasks }: TaskGroupProps) {
