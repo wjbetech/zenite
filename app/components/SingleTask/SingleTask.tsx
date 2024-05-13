@@ -19,7 +19,7 @@ export default function SingleTask({ title, description, date, isCompleted }: Ta
         <div className="flex justify-between">
           <h1>{title}</h1>
           <button type="button" className="text-xl p-1 rounded-lg border-2 bg-red-500 text-white hover:bg-red-600">
-            {menuIcons["delete"]}
+            Delete
           </button>
         </div>
         <p className="mt-2">{description}</p>
