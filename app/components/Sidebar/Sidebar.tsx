@@ -24,6 +24,7 @@ import {
 
 // import global state
 import { useGlobalState } from "@/app/context/globalProvider";
+import getMenuIcon from "@/app/utils/icons";
 
 export default function Sidebar() {
   // theme
@@ -64,7 +65,7 @@ export default function Sidebar() {
                   className="flex items-baseline text-xs gap-3 p-2 hover:bg-slate-400/10 text-slate-500 w-full rounded-md"
                   onKeyDown={() => link}
                 >
-                  {React.createElement(menuIcons[item.icon])}
+                  {getMenuIcon(item.icon)}
                   <Link className="nav-link" href={item.link}>
                     {item.title}
                   </Link>

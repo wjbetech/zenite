@@ -2,7 +2,6 @@
 
 import React from "react";
 import { FaX } from "react-icons/fa6";
-import menuIcons from "@/app/utils/icons";
 
 interface TaskProps {
   title: string;
@@ -19,7 +18,7 @@ export default function SingleTask({ title, description, date, isCompleted }: Ta
         <div className="flex justify-between">
           <h1>{title}</h1>
           <button type="button" className="text-xl p-1 rounded-lg border-2 bg-red-500 text-white hover:bg-red-600">
-            {menuIcons["delete"]}
+            <FaX />
           </button>
         </div>
         <p className="mt-2">{description}</p>
