@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 
 // next optimizations
 import Link from "next/link";
@@ -6,7 +7,8 @@ import { usePathname, useRouter } from "next/navigation";
 
 // utilities
 import menu from "@/app/utils/menu";
-import getMenuIcon from "@/app/utils/icons";
+import menuIcons from "@/app/utils/icons";
+import { FaList, FaPlus, FaPlay, FaStop, FaCog } from "react-icons/fa";
 
 // clerk
 import {
@@ -62,7 +64,7 @@ export default function Sidebar() {
                   className="flex items-baseline text-xs gap-3 p-2 hover:bg-slate-400/10 text-slate-500 w-full rounded-md"
                   onKeyDown={() => link}
                 >
-                  {getMenuIcon(item.icon)}
+                  {React.createElement(menuIcons[item.icon])}
                   <Link className="nav-link" href={item.link}>
                     {item.title}
                   </Link>

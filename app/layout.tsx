@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useImportType: <explanation>
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 
