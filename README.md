@@ -1,13 +1,6 @@
-## TODO
+# Zenite
 
-[O] - Toast for adding task
-[O] - Getting tasks from DB
-[] - Modal toggle to add task
-[] - Delete and Create tasks
-[] - User profile page
-[] - Task update page
-[] - Themes
-[] - Responsiveness and mobile
+A simple task management system built using Next.js, Tailwild CSS & Prisma /w MongoDB.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
