@@ -22,7 +22,7 @@ export default function Tasks({ tasks }: TaskProps) {
   const { theme } = useGlobalState();
 
   return (
-    <main className="grid grid-cols-4 gap-8 w-full my-4 h-[300px] py-8">
+    <main className="grid sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 w-full my-4 h-[300px] py-8">
       {tasks.map((task: Task) => (
         <SingleTask
           key={task.id}
