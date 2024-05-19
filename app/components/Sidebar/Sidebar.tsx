@@ -43,7 +43,7 @@ export default function Sidebar() {
   return (
     // entire sidebar
     <SignedIn>
-      <div className="relative min-w-[15rem] flex flex-col justify-between border-none bg-slate-200 p-4">
+      <div className="relative min-w-[15rem] flex flex-col justify-between border-none bg-black/5 p-4">
         {/* user section */}
         <div className="flex px-4 items-center gap-4 justify-evenly rounded-lg cursor-pointer hover:bg-slate-300 p-2">
           <div className="image w-[33%]">
