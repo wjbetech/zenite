@@ -8,3 +8,4 @@
 [] - Task update page
 [] - Themes
 [] - Responsiveness and mobile
+[] - Refactor and bundle up tailwind styles

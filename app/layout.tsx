@@ -6,6 +6,9 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
+// nextTopLoader
+import NextTopLoader from "nextjs-toploader";
+
 // components
 import Sidebar from "./components/Sidebar/Sidebar";
 
@@ -32,6 +35,7 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <NextTopLoader height={4} color="#B57EDC" easing="cubic-bezier(.53, .21, 0, 1)" />
           <div className="flex h-full">
             <ContextProvider>
               <Sidebar />
