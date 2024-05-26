@@ -6,6 +6,9 @@ import axios from "axios";
 // toast elements
 import { Toaster, toast } from "react-hot-toast";
 
+// get the User object
+import { useUser } from "@clerk/nextjs";
+
 // build our context
 export const GlobalContext = createContext();
 export const GlobalUpdateContext = createContext();
@@ -17,6 +20,9 @@ export const GlobalProvider = ({ children }) => {
   const [isFetching, setIsFetching] = useState(false);
   const [tasks, setTasks] = useState([]);
   const theme = myThemes[selectedTheme];
+
+  // grab user info
+  const { user } = useUser();
 
   // fetch tasks from prisma
   const myTasks = async () => {
@@ -35,10 +41,11 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  // rerender page when user's tasks load in
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    myTasks();
-  }, []);
+    if (user) myTasks();
+  }, [user]);
 
   return (
     <GlobalContext.Provider value={{ theme, tasks }}>

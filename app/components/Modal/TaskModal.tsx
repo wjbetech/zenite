@@ -47,7 +47,7 @@ export default function TaskModal() {
         console.log(res.data.error);
         toast.error("Could not create task!");
       }
-      console.log("Succesfully created task!", taskState);
+      console.log("Succesfully created task!");
       toast.success("Task created successfully!");
       return NextResponse.json(res);
     } catch (error) {
