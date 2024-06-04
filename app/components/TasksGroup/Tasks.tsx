@@ -50,6 +50,7 @@ export default function Tasks({ tasks }: TaskProps) {
               <p className="mt-2">Add Task</p>
             </button>
           )}
+          <TaskModal></TaskModal>
         </main>
       )}
     </div>

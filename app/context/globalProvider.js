@@ -31,6 +31,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.get("/api/tasks");
       setTasks(res.data);
+      myTasks();
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -47,7 +48,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.delete(`/api/tasks/${id}`);
       toast.success("Task deleted");
-      allTasks();
+      myTasks();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
