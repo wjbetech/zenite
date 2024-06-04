@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { NextResponse } from "next/server";
 import axios from "axios";
 
 // toast elements
@@ -15,14 +16,14 @@ export const GlobalUpdateContext = createContext();
 
 // build our provider
 export const GlobalProvider = ({ children }) => {
+  // grab user info
+  const { user } = useUser();
+
   const myThemes = ["light", "dark"];
   const [selectedTheme, setSelectedTheme] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
   const [tasks, setTasks] = useState([]);
   const theme = myThemes[selectedTheme];
-
-  // grab user info
-  const { user } = useUser();
 
   // fetch tasks from prisma
   const myTasks = async () => {
@@ -34,10 +35,23 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       toast.error("Could not retrieve your tasks!");
-      return NextResponse({
+      return new NextResponse({
         error: "Failed to fetch tasks!",
         status: 500,
       });
+    }
+  };
+
+  // delete a single task
+  const deleteTask = async (id) => {
+    try {
+      const res = await axios.delete(`/api/tasks/${id}`);
+      toast.success("Task deleted");
+
+      allTasks();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -48,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <GlobalContext.Provider value={{ theme, tasks }}>
+    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching }}>
       <Toaster />
       <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>

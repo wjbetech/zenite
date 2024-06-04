@@ -1,5 +1,6 @@
 "use client";
 
+import { useGlobalState } from "@/app/context/globalProvider";
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
@@ -12,6 +13,7 @@ interface TaskProps {
 }
 
 export default function SingleTask({ title, description, date, isCompleted }: TaskProps) {
+  const { theme, deleteTask } = useGlobalState();
   return (
     <div className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300">
       <div className="flex flex-col justify-between">
@@ -27,7 +29,12 @@ export default function SingleTask({ title, description, date, isCompleted }: Ta
         </div>
         <div className="flex flex-row gap-2 p-1">
           <FaEdit className="text-xl text-blue-600 hover:text-blue-700" />
-          <FaTrashAlt className="text-xl text-red-600 hover:text-red-700" />
+          <FaTrashAlt
+            className="text-xl text-red-600 hover:text-red-700"
+            onClick={(id) => {
+              deleteTask(id);
+            }}
+          />
         </div>
       </div>
     </div>

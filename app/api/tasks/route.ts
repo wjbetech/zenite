@@ -3,7 +3,7 @@ import { User, auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
-// finished* POST requests with data validation
+// POST requests with data validation
 export async function POST(req: Request) {
   try {
     // make sure a user is logged in before POST
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   }
 }
 
-// finished* GET requests with userId protection
+// GET requests with userId protection
 export async function GET() {
   // find userId or error if no userId
   const { userId } = auth();
@@ -76,6 +76,5 @@ export async function GET() {
     where: { userId },
   });
 
-  console.log("TASKS: ", tasks);
   return NextResponse.json(tasks);
 }

@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/context/globalProvider.js",
-    "app/utils/icons.jsx"
+    "app/utils/icons.js"
   ],
   "exclude": ["node_modules"]
 }
