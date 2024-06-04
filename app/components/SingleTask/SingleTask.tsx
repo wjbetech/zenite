@@ -12,7 +12,7 @@ interface TaskProps {
   id: string;
 }
 
-export default function SingleTask({ title, description, date, isCompleted }: TaskProps) {
+export default function SingleTask({ title, description, date, isCompleted, id }: TaskProps) {
   const { theme, deleteTask } = useGlobalState();
   return (
     <div className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300">
@@ -31,7 +31,7 @@ export default function SingleTask({ title, description, date, isCompleted }: Ta
           <FaEdit className="text-xl text-blue-600 hover:text-blue-700" />
           <FaTrashAlt
             className="text-xl text-red-600 hover:text-red-700"
-            onClick={(id) => {
+            onClick={() => {
               deleteTask(id);
             }}
           />
