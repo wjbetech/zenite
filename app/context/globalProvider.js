@@ -55,6 +55,10 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  // sort for completed or active tasks
+  const completedTasks = tasks.filter((task) => task.completed);
+  const activeTasks = tasks.filter((task) => !task.completed);
+
   // rerender page when user's tasks load in
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
@@ -62,7 +66,7 @@ export const GlobalProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching }}>
+    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks }}>
       <Toaster />
       <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>
