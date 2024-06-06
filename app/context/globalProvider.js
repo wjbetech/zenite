@@ -51,7 +51,18 @@ export const GlobalProvider = ({ children }) => {
       myTasks();
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Could not delete task!");
+    }
+  };
+
+  const editTask = async (id) => {
+    try {
+      const res = await axios.put(`/api/tasks/${id}`);
+      toast.success("Task updated successfully!");
+      myTasks();
+    } catch (error) {
+      console.log("Could not update task!", error);
+      toast.error("Could not update task!");
     }
   };
 
@@ -63,10 +74,10 @@ export const GlobalProvider = ({ children }) => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (user) myTasks();
-  }, [user]);
+  }, []);
 
   return (
-    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks }}>
+    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks, editTask }}>
       <Toaster />
       <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>

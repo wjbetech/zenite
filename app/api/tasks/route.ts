@@ -3,7 +3,7 @@ import { User, auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
-// POST requests with data validation
+// POST requests with data validation (fin)
 export async function POST(req: Request) {
   try {
     // make sure a user is logged in before POST
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       },
     });
 
-    // return the prisma task in json format
+    // return the prisma task in JSON
     return NextResponse.json(task);
   } catch (error) {
     console.log(error);
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
   }
 }
 
-// GET requests with userId protection
+// GET requests with userId protection (fin)
 export async function GET() {
   // find userId or error if no userId
   const { userId } = auth();
@@ -71,10 +71,43 @@ export async function GET() {
       // status: redirect("/login"),
     });
   }
-  // match userId against logged in userId posts
+  // match userId to logged in userId posts
   const tasks = await prisma.task.findMany({
     where: { userId },
   });
-
+  // return the matching tasks in JSON
   return NextResponse.json(tasks);
+}
+
+// PUT requests for updating task status
+export async function PUT(req: Request) {
+  try {
+    // find userId or error if no userId
+    const { userId } = auth();
+    if (!userId) {
+      return NextResponse.json({
+        error: "Unauthorised",
+        status: 401,
+        // status: redirect("/login"),
+      });
+    }
+
+    // gather data from task
+    const { isCompleted, id } = await req.json;
+
+    const taskToUpdate = await prisma.task.update({
+      where: {
+        id,
+      },
+      data: {
+        isCompleted: !isCompleted,
+      },
+    });
+  } catch (error) {
+    console.log("Could not update task!", error);
+    return NextResponse.json({
+      error: "Could not update task",
+      status: 500,
+    });
+  }
 }

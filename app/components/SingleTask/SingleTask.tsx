@@ -13,7 +13,7 @@ interface TaskProps {
 }
 
 export default function SingleTask({ title, description, date, isCompleted, id }: TaskProps) {
-  const { theme, deleteTask } = useGlobalState();
+  const { theme, deleteTask, editTask } = useGlobalState();
   return (
     <div className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300">
       <div className="flex flex-col justify-between">
@@ -24,7 +24,10 @@ export default function SingleTask({ title, description, date, isCompleted, id }
       </div>
       <div className="flex flex-row justify-between items-end">
         <div className="flex flex-col">
-          <p className="text-slate-500">Created: {date.slice(0, 10)}</p>
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+          <p onClick={() => editTask(id)} className="text-slate-500">
+            Created: {date.slice(0, 10)}
+          </p>
           {isCompleted ? <p className="text-green-500">Completed</p> : <p className="text-red-500">Incomplete</p>}
         </div>
         <div className="flex flex-row gap-2 p-1">
