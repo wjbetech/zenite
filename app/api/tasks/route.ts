@@ -82,27 +82,26 @@ export async function GET() {
 // PUT requests for updating task status
 export async function PUT(req: Request) {
   try {
-    // find userId or error if no userId
     const { userId } = auth();
+    const { isCompleted, id } = await req.json();
+
     if (!userId) {
       return NextResponse.json({
         error: "Unauthorised",
         status: 401,
-        // status: redirect("/login"),
       });
     }
 
-    // gather data from task
-    const { isCompleted, id } = await req.json;
-
-    const taskToUpdate = await prisma.task.update({
+    const task = await prisma.task.update({
       where: {
         id,
       },
       data: {
-        isCompleted: !isCompleted,
+        isCompleted,
       },
     });
+
+    return NextResponse.json(task);
   } catch (error) {
     console.log("Could not update task!", error);
     return NextResponse.json({

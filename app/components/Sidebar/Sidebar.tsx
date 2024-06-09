@@ -32,8 +32,6 @@ export default function Sidebar() {
   // clerk
   const { isLoaded, isSignedIn, user } = useUser();
 
-  console.log(theme);
-
   const router = useRouter();
   const pathName = usePathname();
   const handleClick = (link: string) => {

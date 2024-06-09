@@ -23,7 +23,13 @@ export const GlobalProvider = ({ children }) => {
   const [selectedTheme, setSelectedTheme] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [modalState, setModalState] = useState(false);
+
   const theme = myThemes[selectedTheme];
+
+  const toggleModal = () => {
+    setModalState(!modalState);
+  };
 
   // fetch tasks from prisma
   const myTasks = async () => {
@@ -31,7 +37,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.get("/api/tasks");
       setTasks(res.data);
-      myTasks();
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -41,6 +46,7 @@ export const GlobalProvider = ({ children }) => {
         status: 500,
       });
     }
+    setIsFetching(false);
   };
 
   // delete a single task
@@ -55,9 +61,9 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const editTask = async (id) => {
+  const updateTaskStatus = async (task) => {
     try {
-      const res = await axios.put(`/api/tasks/${id}`);
+      const res = await axios.put("/api/tasks", task);
       toast.success("Task updated successfully!");
       myTasks();
     } catch (error) {
@@ -67,17 +73,18 @@ export const GlobalProvider = ({ children }) => {
   };
 
   // sort for completed or active tasks
-  const completedTasks = tasks.filter((task) => task.completed);
-  const activeTasks = tasks.filter((task) => !task.completed);
+  const completedTasks = tasks.filter((task) => task.isCompleted);
+  const activeTasks = tasks.filter((task) => !task.isCompleted);
 
   // rerender page when user's tasks load in
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (user) myTasks();
-  }, []);
+  }, [user]);
 
   return (
-    <GlobalContext.Provider value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks, editTask }}>
+    <GlobalContext.Provider
+      value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks, updateTaskStatus, toggleModal }}
+    >
       <Toaster />
       <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>
