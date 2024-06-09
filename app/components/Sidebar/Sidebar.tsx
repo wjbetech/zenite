@@ -27,8 +27,6 @@ import { useGlobalState } from "@/app/context/globalProvider";
 import getMenuIcon from "@/app/utils/icons";
 
 export default function Sidebar() {
-  // theme
-  const { theme } = useGlobalState();
   // clerk
   const { isLoaded, isSignedIn, user } = useUser();
 

@@ -28,6 +28,7 @@ export const GlobalProvider = ({ children }) => {
   const theme = myThemes[selectedTheme];
 
   const toggleModal = () => {
+    console.log("clicking inside togglemodal!");
     setModalState(!modalState);
   };
 
@@ -78,15 +79,27 @@ export const GlobalProvider = ({ children }) => {
 
   // rerender page when user's tasks load in
   useEffect(() => {
-    if (user) myTasks();
+    if (user) {
+      myTasks();
+    }
   }, [user]);
 
   return (
     <GlobalContext.Provider
-      value={{ theme, tasks, deleteTask, isFetching, completedTasks, activeTasks, updateTaskStatus, toggleModal }}
+      value={{
+        theme,
+        tasks,
+        deleteTask,
+        isFetching,
+        completedTasks,
+        activeTasks,
+        updateTaskStatus,
+        toggleModal,
+        modalState,
+      }}
     >
       <Toaster />
-      <GlobalUpdateContext.Provider value>{children}</GlobalUpdateContext.Provider>
+      <GlobalUpdateContext.Provider value={{ toggleModal }}>{children}</GlobalUpdateContext.Provider>
     </GlobalContext.Provider>
   );
 };
