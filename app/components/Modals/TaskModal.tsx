@@ -7,6 +7,7 @@ import axios from "axios";
 // toast
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
+import { FaPlus } from "react-icons/fa";
 
 // types for our task modal inputs
 interface TaskState {
@@ -100,8 +101,11 @@ export default function TaskModal() {
         />
       </div>
       <div className="submit-button">
-        <button type="submit" className="border-2 p-2 rounded-md">
-          Add Task
+        <button
+          type="submit"
+          className="flex flex-row gap-2 items-center bg-green-500 text-white hover:bg-green-600/90 border-2 p-2 rounded-md"
+        >
+          <FaPlus /> Add Task
         </button>
       </div>
     </form>
