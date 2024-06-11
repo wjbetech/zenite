@@ -39,7 +39,7 @@ export default async function RootLayout({
           <div className="flex h-full">
             <ContextProvider>
               <Sidebar />
-              <div className="w-full px-2 sm:ml-[260px] p-6">{children}</div>
+              <div className="w-full px-2 ml-4 sm:ml-[260px] p-6 mr-4">{children}</div>
             </ContextProvider>
           </div>
         </body>

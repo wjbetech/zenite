@@ -37,7 +37,13 @@ export const GlobalProvider = ({ children }) => {
     setIsFetching(true);
     try {
       const res = await axios.get("/api/tasks");
-      setTasks(res.data);
+
+      // sort tasks based on date created
+      const sortedTasks = res.data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+
+      setTasks(sortedTasks);
       setIsFetching(false);
     } catch (error) {
       console.log(error);

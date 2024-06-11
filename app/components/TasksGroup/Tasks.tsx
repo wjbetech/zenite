@@ -20,7 +20,7 @@ interface TaskProps {
 }
 
 export default function Tasks({ tasks }: TaskProps) {
-  const { theme, isFetching, editTask, toggleModal, modalState } = useGlobalState();
+  const { theme, isFetching, toggleModal, modalState } = useGlobalState();
 
   console.log(modalState);
 

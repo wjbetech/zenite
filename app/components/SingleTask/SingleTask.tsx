@@ -3,6 +3,7 @@
 import { useGlobalState } from "@/app/context/globalProvider";
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import Link from "next/link";
 
 interface TaskProps {
   title: string;
@@ -15,7 +16,10 @@ interface TaskProps {
 export default function SingleTask({ title, description, date, isCompleted, id }: TaskProps) {
   const { theme, deleteTask, updateTaskStatus } = useGlobalState();
   return (
-    <div className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300">
+    <Link
+      href={`/task-view/${id}`}
+      className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300"
+    >
       <div className="flex flex-col justify-between">
         <div className="flex justify-between">
           <h1>{title}</h1>
@@ -66,7 +70,7 @@ export default function SingleTask({ title, description, date, isCompleted, id }
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
