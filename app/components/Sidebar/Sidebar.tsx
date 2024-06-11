@@ -39,7 +39,7 @@ export default function Sidebar() {
   return (
     // entire sidebar
     <SignedIn>
-      <div className="fixed h-screen min-w-[15rem] flex flex-col justify-between border-none bg-black/5 p-4">
+      <div className="hidden fixed h-screen min-w-[15rem] sm:flex flex-col justify-between border-none bg-black/5 p-4">
         {/* user section */}
         <Link
           href="/settings"

@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/nextjs";
 import { FaPlus } from "react-icons/fa";
+import { useGlobalState } from "@/app/context/globalProvider";
 
 // types for our task modal inputs
 interface TaskState {
@@ -19,6 +20,8 @@ interface TaskState {
 }
 
 export default function TaskModal() {
+  const { myTasks, toggleModal } = useGlobalState();
+
   const user = useAuth();
 
   // states for tasks
@@ -50,6 +53,8 @@ export default function TaskModal() {
       }
       console.log("Succesfully created task!");
       toast.success("Task created successfully!");
+      myTasks();
+      toggleModal();
       return NextResponse.json(res);
     } catch (error) {
       // catch errors

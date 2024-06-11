@@ -96,6 +96,7 @@ export const GlobalProvider = ({ children }) => {
         updateTaskStatus,
         toggleModal,
         modalState,
+        myTasks,
       }}
     >
       <Toaster />

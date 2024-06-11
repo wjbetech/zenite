@@ -7,7 +7,7 @@ export default function Home() {
   const { tasks } = useGlobalState();
 
   return (
-    <div>
+    <div className="">
       <h1 className="underline underline-offset-[8px] decoration-blue-500 decoration-[8px]">All Tasks</h1>
       <Tasks tasks={tasks} />
     </div>
