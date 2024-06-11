@@ -66,7 +66,10 @@ export default function TaskModal() {
 
   // render out the task form
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col p-4 border-2 border-slate-400 rounded-md hover:shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col p-4 border-2 border-slate-400 rounded-md gap-y-6 hover:shadow-md"
+    >
       <h1>Create Task</h1>
       <div className="flex flex-col gap-2 py-2">
         <label htmlFor="title" className="text-gray-500">
@@ -97,7 +100,7 @@ export default function TaskModal() {
         />
       </div>
       <div className="submit-button">
-        <button type="submit" className="border-2 p-2 w-full rounded-md">
+        <button type="submit" className="border-2 p-2 rounded-md">
           Add Task
         </button>
       </div>

@@ -43,7 +43,7 @@ export default function Tasks({ tasks }: TaskProps) {
               id={task.id}
             />
           ))}
-          {isFetching ? (
+          {isFetching || modalState ? (
             ""
           ) : (
             <button
