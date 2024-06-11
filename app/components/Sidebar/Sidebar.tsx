@@ -43,7 +43,7 @@ export default function Sidebar() {
         {/* user section */}
         <Link
           href="/settings"
-          className="flex px-4 items-center gap-4 justify-evenly rounded-lg cursor-pointer hover:bg-slate-300 p-2"
+          className="flex px-4 items-center gap-4 justify-evenly rounded-lg cursor-pointer hover:bg-slate-300 p-2 m-[18px]"
         >
           <div className="image w-[33%]">
             <UserButton />
@@ -53,7 +53,7 @@ export default function Sidebar() {
           </div>
         </Link>
         {/* menu items */}
-        <div className="workspace">
+        <div className="workspace m-[14px]">
           <h5 className="text-slate-500 mb-2 text-sm pb-2 border-b-2 border-slate-400/50">WORKSPACE</h5>
           <ul className="flex flex-col gap-1 cursor-pointer relative mb-10">
             {menu.map((item) => {

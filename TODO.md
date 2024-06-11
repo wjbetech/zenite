@@ -5,7 +5,6 @@
 [O] - Modal toggle to add task
 [O] - Delete and Create tasks
 [] - User profile page
-[] - Task update page
 [] - Themes
 [] - Responsiveness and mobile
 [] - Refactor and bundle up tailwind styles

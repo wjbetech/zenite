@@ -20,14 +20,14 @@ export default function SingleTask({ title, description, date, isCompleted, id }
       href={`/task-view/${id}`}
       className="flex flex-col gap-y-4 p-4 h-[300px] min-w-[300px] rounded-md justify-between bg-black/5 hover:shadow-xl hover:cursor-pointer hover:slate-400 transition-all ease-in-out duration-300"
     >
-      <div className="flex flex-col justify-between">
-        <div className="flex justify-between">
+      <div className="">
+        <div className="">
           <h1>{title}</h1>
         </div>
         <p className="mt-2">{description}</p>
       </div>
-      <div className="flex flex-row justify-between items-end">
-        <div className="flex flex-col">
+      <div className="flex justify-between items-end">
+        <div className="">
           <p className="text-slate-500">Created: {date.slice(0, 10)}</p>
           {isCompleted ? (
             <button

@@ -13,11 +13,11 @@ export default async function page({ params }: { params: { id: string } }) {
   });
 
   return (
-    <div className="p-[48px] flex flex-col gap-y-6">
+    <div className="p-[18px] flex flex-col gap-y-6">
       <Link
         href="/"
         type="button"
-        className="flex flex-row gap-2 items-center border-2 justify-center w-[100px] py-2 rounded-full bg-black/5 hover:bg-black/10"
+        className="button flex flex-row justify-center gap-2 items-center border-2 border-black py-3 hover:bg-black/5 px-2 rounded-full w-[112px]"
       >
         <FaArrowLeft />
         Back
