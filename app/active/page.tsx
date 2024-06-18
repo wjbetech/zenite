@@ -12,10 +12,6 @@ interface Task {
 	id: string;
 }
 
-interface TaskProps {
-	tasks: Task[];
-}
-
 export default function Tasks() {
 	const { theme, isFetching, activeTasks } = useGlobalState();
 
