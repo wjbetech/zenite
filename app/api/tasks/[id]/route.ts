@@ -2,10 +2,13 @@ import prisma from "@/app/utils/connectDB";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     // find userId or error if no userId
-    const { userId } = auth();
+    const { userId } = await auth();
 
     // get id from params
     const { id } = params;
@@ -26,6 +29,9 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
     // delete task
   } catch (error) {
     console.log("ERROR DELETING TASK", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

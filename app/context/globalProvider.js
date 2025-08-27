@@ -1,7 +1,6 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { NextResponse } from "next/server";
 import axios from "axios";
 
 // toast elements
@@ -46,12 +45,18 @@ export const GlobalProvider = ({ children }) => {
       setTasks(sortedTasks);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
-      toast.error("Could not retrieve your tasks!");
-      return new NextResponse({
-        error: "Failed to fetch tasks!",
-        status: 500,
-      });
+      console.log("myTasks error:", error?.response || error);
+      const status = error?.response?.status;
+      // If unauthenticated, just set empty tasks (don't spam the user in dev)
+      if (status === 401) {
+        setTasks([]);
+      } else {
+        if (process.env.NODE_ENV !== "development") {
+          toast.error("Could not retrieve your tasks!");
+        }
+      }
+      setIsFetching(false);
+      return;
     }
     setIsFetching(false);
   };
@@ -106,7 +111,9 @@ export const GlobalProvider = ({ children }) => {
       }}
     >
       <Toaster />
-      <GlobalUpdateContext.Provider value={{ toggleModal }}>{children}</GlobalUpdateContext.Provider>
+      <GlobalUpdateContext.Provider value={{ toggleModal }}>
+        {children}
+      </GlobalUpdateContext.Provider>
     </GlobalContext.Provider>
   );
 };
